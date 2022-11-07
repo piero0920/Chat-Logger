@@ -1,5 +1,3 @@
-# Chat Logger
-
 ## Documentation
 
 #### https://chat.kala-vods.com/KalathrasLolweapon
