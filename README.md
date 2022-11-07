@@ -1,7 +1,7 @@
 ## Documentation
 
 #### https://chat.kala-vods.com/KalathrasLolweapon
->All chat history
+>All chat history (Since November 7, 2022)
 
 #### https://chat.kala-vods.com/KalathrasLolweapon/ `<username>`
 >Chat of specific user
