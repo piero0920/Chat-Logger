@@ -12,8 +12,10 @@
 npm install
 ```
 Get your own Twitch [OAuth token](https://dev.twitch.tv/docs/api/get-started) and [Client ID](https://dev.twitch.tv/console).
+
 Edit every documentes in [/src/views](https://github.com/piero0920/Chat-Logger/tree/main/src/views)
-```
+
+```javascript
 fetchTwitchData(){
     fetch('https://api.twitch.tv/helix/', {
          method: 'get',
