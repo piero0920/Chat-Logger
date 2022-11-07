@@ -73,8 +73,8 @@ export default {
       fetch(fetchGlobal, {
         method: 'get',
         headers: new Headers({
-          'Authorization': 'Bearer 8cvc8htzjgnbnjon4iwbajd9e325a1',
-          'Client-ID': 'kaxev6jb3pzwx6trxee5lggpad3zq4'
+          'Authorization': '<your-oauth-token>',
+            'Client-ID': 'your-client-id'
         })
       })
       .then(res => res.json())
@@ -89,8 +89,8 @@ export default {
       fetch(fetchEmotes, {
         method: 'get',
         headers: new Headers({
-          'Authorization': 'Bearer 8cvc8htzjgnbnjon4iwbajd9e325a1',
-          'Client-ID': 'kaxev6jb3pzwx6trxee5lggpad3zq4'
+          'Authorization': '<your-oauth-token>',
+            'Client-ID': 'your-client-id'
         })
       })
       .then(res => res.json())
@@ -105,8 +105,8 @@ export default {
       fetch(fetchGlobalEmotes, {
         method: 'get',
         headers: new Headers({
-          'Authorization': 'Bearer 8cvc8htzjgnbnjon4iwbajd9e325a1',
-          'Client-ID': 'kaxev6jb3pzwx6trxee5lggpad3zq4'
+          'Authorization': '<your-oauth-token>',
+            'Client-ID': 'your-client-id'
         })
       })
       .then(res => res.json())
