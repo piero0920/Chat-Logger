@@ -23,12 +23,12 @@ fetchTwitchData(){
             'Authorization': '<your-oauth-token>',
             'Client-ID': 'your-client-id'
          })
-        })
-        .then(res => res.json())
-        .then((data) => {
-          this.TwitchData = data.data;
-        })
-      }
+    })
+    .then(res => res.json())
+    .then((data) => {
+         this.TwitchData = data.data;
+    })
+}
 ```
 ### Compiles and hot-reloads for development
 ```
