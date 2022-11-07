@@ -32,7 +32,7 @@
           Loading...
         </div>
     </div>
-    <a class="github" href="https://github.com" target="_blank"><img src="https://i.imgur.com/uwMrD5Z.png" alt=""></a>
+    <a class="github" href="https://github.com/piero0920/Chat-Logger" target="_blank"><img src="https://i.imgur.com/uwMrD5Z.png" alt=""></a>
 </template>
 
 <script>
