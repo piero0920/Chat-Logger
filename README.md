@@ -3,7 +3,7 @@
 #### https://chat.kala-vods.com/KalathrasLolweapon
 >All chat history (Since November 7, 2022)
 
-#### https://chat.kala-vods.com/KalathrasLolweapon/user/ `<username>`
+#### https://chat.kala-vods.com/KalathrasLolweapon/u/ `<username>` [e.g.](https://chat.kala-vods.com/KalathrasLolweapon/u/jorgesempai_harem69) 
 >Chat of specific user
 
 

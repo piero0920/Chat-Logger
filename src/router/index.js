@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Channel from '../views/Channel.vue'
 import User from '../views/User.vue'
 
+
 const routes = [
   {
     path: '/',
@@ -13,7 +14,7 @@ const routes = [
     component: Channel
   },
   {
-    path: '/:channel/user/:user',
+    path: '/:channel/u/:user',
     name: 'user',
     component: User
   }
