@@ -1,8 +1,8 @@
 <template>
+  <div id="aaa">
     <div class="simplebar-scroll-content">
-      <LoadMore @intersect="intersected" />
-      <div class="simplebar-content" v-if="chatMessages.length">
-        <div class="totalMessages" title="Total Messages">{{chatMessages.length}}</div>
+      <InfiniteLoading @infinite="load" :top="true" :no-more="false"/>
+      <div class="totalMessages" title="Total Messages">{{chatMessages.length}}/{{total}}</div>   
         <div class="message-container" v-for="chat in chatMessages" :key="chat._id">
           <div class="chat-line__message">
             <span class="chat-line__timestamp">{{ dateConvert(chat.createdAt) }}&nbsp;</span>
@@ -20,7 +20,7 @@
                <img :src="globalFind2(badge)" alt="">
               </div>
             </span>
-            <router-link class="a" :to="{ name: 'user', params: { channel: $route.params.channel, user: chat.name } }">
+            <router-link class="a" target="_blank" :to="{ name: 'user', params: { channel: $route.params.channel, user: chat.name } }">
             <span class="chat-line__username" :style="'color:' + chat.color + ';'">
                 <span class="chat-author__display-name">{{ chat.name }}</span>
               </span>
@@ -31,21 +31,19 @@
             </span>
           </div>
         </div>
-        <div id="bottom"></div>
-      </div>
-      <div v-else>
-        Loading...
-      </div>
+           
     </div>
     <Github />
+  </div>
   </template>
   <script>
-    import io from 'socket.io-client'
     import Github from '../components/Github.vue'
-    //import LoadMore from '../components/LoadMore.vue'
+    import InfiniteLoading from "v3-infinite-loading";
+    import "v3-infinite-loading/lib/style.css";
+
     import { fetchChatMessages, fetchChannelBadges, fetchGlobalBadges } from '../components/methods'
     export default {
-      components: { Github, LoadMore },
+      components: { Github, InfiniteLoading },
       title () {
         return `${this.$route.params.channel}`
       },
@@ -54,30 +52,43 @@
           chatMessages: [],
           channelBadges: [],
           globalBadges: [],
-          aaa: 0,
+          page: 1,
+          total: 0,
         }
       },
-      created(){
-        const channel = this.$route.params.channel;
-          this.socketInstance = io(process.env.VUE_APP_API, {query: {channel:channel} })
-
-          this.socketInstance.on('output', (data) => {
-              this.chatMessages.unshift(... data.data) 
-              this.chatMessages.sort(function(a,b){
-                return new Date(a.createdAt) - new Date(b.createdAt);
-              });
-          })
-      },
     methods: {
-      addNum(num){
-        this.aaa= this.aaa + 1;
-        console.log(this.aaa)
-        return this.aaa
-      },
-      intersected(){
-        this.socketInstance.emit('aaa', {
-          page: this.addNum(this.aaa),
-        })
+      async load($state){
+        console.log("loading...");
+
+        try {
+        const response = await fetch(
+            "http://localhost:5000/chat/"+ this.$route.params.channel +"?page=" + this.page
+        );
+        const json = await response.json();
+          this.total = json.total
+        if (json.data.length < 100) {
+          this.chatMessages.unshift(...json.data)
+          $state.complete()
+        }
+        else {
+          if(json.data.length >= 0){
+            this.chatMessages.unshift(...json.data);
+            this.chatMessages.sort(function(a, b) {
+              var keyA = new Date(a.createdAt),
+                keyB = new Date(b.createdAt);
+              // Compare the 2 dates
+              if (keyA < keyB) return -1;
+              if (keyA > keyB) return 1;
+              return 0;
+            })
+            $state.loaded();
+          }
+            
+        }
+        this.page++;
+        } catch (error) {
+          $state.error();
+        }
       },
       dateConvert(date) {
         var time = new Date(date);
@@ -125,20 +136,12 @@
         const gf1 = new Object(gf.versions)
         const gf2 = new Object(gf1[0])
         return gf2.image_url_2x;
-      },
-      scrollToBottom() {
-        this.$nextTick(() => {
-          this.$scrollTo('#bottom')
-        })
-      },
+      }
     },
     watch: {
       chatMessages(newchats, oldchats) {
         if(newchats) {
-          console.log('aa')
-          this.$nextTick(() => {
-            this.$scrollTo('#bottom')
-          })
+          
         }
       }
     },
@@ -146,6 +149,7 @@
       //this.chatMessages = await fetchChatMessages('piero_fn')
       this.channelBadges = await fetchChannelBadges(this.$route.params.channel);
       this.globalBadges = await fetchGlobalBadges()
+      //this.api()
     },
   }
 </script>

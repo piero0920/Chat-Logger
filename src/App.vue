@@ -14,6 +14,9 @@ html, body{
   background-color: #121212;
   overflow-x: hidden;
 }
+.a {
+  text-decoration: none;
+}
 .simplebar-scroll-content{
   width: 100%;
     

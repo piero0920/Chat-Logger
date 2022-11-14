@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Channel from '../views/Channel.vue'
-import User from '../views/User.vue'
-
+import Channel from '../views/Channel2.vue'
+import User from '../views/User2.vue'
 
 const routes = [
   {
