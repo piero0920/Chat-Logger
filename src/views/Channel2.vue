@@ -62,7 +62,7 @@
 
         try {
         const response = await fetch(
-            "http://localhost:5000/chat/"+ this.$route.params.channel +"?page=" + this.page
+            "https://api.kala-vods.com/chat/"+ this.$route.params.channel +"?page=" + this.page
         );
         const json = await response.json();
           this.total = json.total
