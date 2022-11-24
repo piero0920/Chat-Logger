@@ -19,6 +19,9 @@
               <div class="badges" v-if="badge && globalFind2(badge)">
                <img :src="globalFind2(badge)" alt="">
               </div>
+              <div class="badges" v-if="badge && globalFind3(badge)">
+                 <img :src="globalFind3(badge)" alt="">
+                </div>
             </span>
             <router-link class="a" target="_blank" :to="{ name: 'user', params: { channel: $route.params.channel, user: chat.name } }">
             <span class="chat-line__username" :style="'color:' + chat.color + ';'">
@@ -176,7 +179,14 @@
         const gf1 = new Object(gf.versions)
         const gf2 = new Object(gf1[0])
         return gf2.image_url_2x;
-      }
+      },
+      globalFind3(ids) {
+          const found = this.cleanBadges(ids);
+          const gf = new Object(this.globalBadges.find(obj => { return obj.set_id == found[2] }))
+          const gf1 = new Object(gf.versions)
+          const gf2 = new Object(gf1[0])
+          return gf2.image_url_2x;
+        }
     },
     watch: {
       chatMessages(newchats, oldchats) {
