@@ -41,6 +41,9 @@ html, body{
 .badges img {
   vertical-align: middle;
 }
+.twitch-emote{
+  vertical-align: middle;
+}
 .github{
   position: fixed;
   bottom: 1em;
@@ -107,7 +110,7 @@ html, body{
     vertical-align: middle;
     font-size: 0.8em;
   }
-  .badges img {
+  .badges img, .twitch-emote {
     width: 30px;
   }
 }
@@ -123,7 +126,7 @@ html, body{
     vertical-align: middle;
     font-size: 0.6em;
   }
-  .badges img {
+  .badges img, .twitch-emote {
     width: 30px;
   }
 }
@@ -139,7 +142,7 @@ html, body{
     vertical-align: middle;
     font-size: 0.5em;
   }
-  .badges img {
+  .badges img, .twitch-emote {
     width: 25px;
   }
 }
