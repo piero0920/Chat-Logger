@@ -60,12 +60,10 @@
           }
         },
       methods: {
-        async load($state){
-          console.log("loading...");
-  
+        async load($state){  
           try {
           const response = await fetch(
-              "https://api.kala-vods.com/chat/"+ this.$route.params.channel +"/"+this.$route.params.user+"?page=" + this.page
+              "https://api.kala-vods.com/v1/chat/"+ this.$route.params.channel +"/"+this.$route.params.user+"?page=" + this.page
           );
           const json = await response.json();
             this.total = json.total
@@ -193,10 +191,8 @@
         }
       },
       async mounted() {
-        //this.chatMessages = await fetchChatMessages('piero_fn')
         this.channelBadges = await fetchChannelBadges(this.$route.params.channel);
         this.globalBadges = await fetchGlobalBadges()
-        //this.api()
       },
     }
   </script>
